@@ -1,0 +1,35 @@
+.lightbox {
+    border: 0;
+    background: transparent;
+    max-width: 530px;
+    z-index: 200;
+    padding: 2em;
+
+    &__imgs {
+        position: relative;
+
+        &__img {
+            border-radius: 0.75rem;
+        }
+
+        &__img[data-visible=false] {
+            display: none;
+        }
+
+
+        &__img[data-visible=true] {
+            display: block;
+        }
+    }
+
+    &__img-btns {
+        gap: 1.5rem;
+        width: 80%;
+        margin-inline: auto;
+        margin-top: 2rem;
+    }
+}
+
+.lightbox::backdrop {
+    background: rgb(0 0 0 / .8);
+}

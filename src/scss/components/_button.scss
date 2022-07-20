@@ -1,0 +1,226 @@
+@use '../base' as *;
+
+.btn {
+    border: 0;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 0;
+}
+
+.nav-toggle {
+    z-index: 500;
+    background-image: url('../../images/icon-menu.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 1.6rem;
+    aspect-ratio: 1;
+    padding: 0;
+
+    &[aria-expanded=true] {
+        background-image: url('../../images/icon-close.svg');
+    }
+
+    @media(min-width: 40em) {
+        display: none;
+
+    }
+}
+
+.btn--cart {
+    &:hover svg path {
+        fill: hsl(var(--clr-black));
+    }
+
+    position: relative;
+
+    .pill {
+        border-radius: 100vmax;
+        padding: 0em 0.75em;
+        font-size: 0.65rem;
+        position: absolute;
+        top: -7.5px;
+        left: 10px;
+        transform: scale(0);
+
+        transition: transform 0.5s cubic-bezier(.68, -0.55, .27, 1.55);
+
+        &[data-visible=true] {
+            transform: scale(1);
+        }
+    }
+}
+
+i {
+    cursor: pointer;
+    color: hsl(var(--clr-primary-600));
+
+    &:hover {
+        color: hsl(var(--clr-primary-800));
+
+    }
+}
+
+.btn--prev--preview,
+.btn--next--preview {
+    background-color: hsl(var(--clr-white));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 25%;
+    border-radius: 100vmax;
+    padding: 1.1em;
+    aspect-ratio: 1;
+    position: absolute;
+    top: 50%;
+}
+
+@media(min-width: 35em) {
+
+    .btn--prev--preview,
+    .btn--next--preview {
+        display: none;
+    }
+
+}
+
+.btn--prev--preview {
+    background-image: url('../../images/icon-previous.svg');
+    left: 1em;
+    background-position-x: 12px;
+}
+
+.btn--next--preview {
+    background-image: url('../../images/icon-next.svg');
+    right: 1em;
+}
+
+.btn--close {
+    position: absolute;
+    top: 0;
+    right: 32px;
+    // background-image: url('../../images/icon-close.svg');
+    // background-repeat: no-repeat;
+    // background-size: 90%;
+    width: 20px;
+    aspect-ratio: 1;
+
+    &:hover svg path {
+        fill: hsl(var(--clr-accent));
+    }
+}
+
+.btn--prev--lightbox,
+.btn--next--lightbox {
+    background-color: #fff;
+    border-radius: 100vmax;
+    width: 50px;
+    // padding: 1.3em;
+    aspect-ratio: 1;
+    position: absolute;
+    top: 50%;
+    display: grid;
+    place-items: center;
+
+    &:hover svg path {
+        stroke: hsl(var(--clr-accent));
+    }
+}
+
+.btn--prev--lightbox {
+    left: -25px;
+}
+
+.btn--next--lightbox {
+    right: -25px;
+}
+
+.btn--img--preview,
+.btn--img--lightbox {
+    border-radius: 0.5rem;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    aspect-ratio: 1;
+
+    &:hover {
+        opacity: 0.4;
+    }
+
+    &:focus {
+        outline: 3px solid hsl(var(--clr-accent));
+        border: none;
+    }
+
+    &[aria-selected=true] {
+        outline: 3px solid hsl(var(--clr-accent));
+    }
+}
+
+.btn--img--lightbox {
+    &:hover {
+        opacity: 1;
+    }
+}
+
+
+.btn--img--preview:nth-child(1),
+.btn--img--lightbox:nth-child(1) {
+    background-image: url('../../images/image-product-1-thumbnail.jpg');
+}
+
+.btn--img--preview:nth-child(2),
+.btn--img--lightbox:nth-child(2) {
+    background-image: url('../../images/image-product-2-thumbnail.jpg');
+}
+
+.btn--img--preview:nth-child(3),
+.btn--img--lightbox:nth-child(3) {
+    background-image: url('../../images/image-product-3-thumbnail.jpg');
+}
+
+.btn--img--preview:nth-child(4),
+.btn--img--lightbox:nth-child(4) {
+    background-image: url('../../images/image-product-4-thumbnail.jpg');
+}
+
+.btn--minus,
+.btn--plus {
+    display: grid;
+    place-items: center;
+
+    &:hover svg use {
+        fill: hsl(var(--clr-accent) / 0.75);
+    }
+}
+
+.btn--add-to-cart {
+    background-color: hsl(var(--clr-accent));
+    border-radius: 0.75rem;
+    padding: 1.1em;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: hsl(var(--clr-accent)) 0px 8px 35px -10px;
+
+    &:hover {
+        background-color: hsl(var(--clr-accent) / 0.75);
+    }
+
+    &:active {
+        transform: translateY(1.2px);
+    }
+}
+
+.btn--checkout {
+    background-color: hsl(var(--clr-accent));
+    border-radius: 0.75rem;
+    padding: 1.1em;
+    width: 100%;
+
+    &:hover {
+        background-color: hsl(var(--clr-accent) / 0.75);
+    }
+
+    &:active {
+        transform: translateY(1.2px);
+    }
+}

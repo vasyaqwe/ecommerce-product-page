@@ -1,0 +1,27 @@
+.grid-container {
+    display: grid;
+    padding-bottom: 4em;
+
+    @media(min-width: 35em) {
+        padding-inline: 3em;
+    }
+
+    @media(min-width: 45em) {
+        gap: min(2vw, 8rem);
+
+        .imgs {
+            grid-area: imgs;
+        }
+
+        .content {
+            grid-area: content;
+            justify-self: start;
+        }
+
+        margin-top: clamp(2rem, 10vw, 6rem);
+        padding-inline: 0;
+        grid-template-columns: minmax(0rem, 1fr) repeat(2, minmax(0, 38rem)) minmax(2rem, 1fr);
+        place-items: center;
+        grid-template-areas: '. imgs content .';
+    }
+}

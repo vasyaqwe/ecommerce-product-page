@@ -1,0 +1,53 @@
+@use '../base' as *;
+
+.nav {
+    &__list {
+        padding: 5.5em 1.4em;
+        flex-direction: column;
+    }
+
+    @media(min-width: 40em) {
+        &__list {
+            padding: 0;
+            flex-direction: row;
+            gap: min(2vw, 2.25rem);
+            color: hsl(var(--clr-primary-700));
+        }
+
+        &__item {
+            position: relative;
+
+            &:hover {
+                color: hsl(var(--clr-primary-800));
+            }
+
+            &:hover::after {
+                content: '';
+                position: absolute;
+                bottom: -44px;
+                left: 0;
+                background-color: hsl(var(--clr-accent));
+                width: 100%;
+                height: 5px;
+
+            }
+        }
+
+    }
+}
+
+@media(max-width: 40em) {
+    .primary-nav {
+        position: fixed;
+        inset: 0 32.5% 0 0;
+        font-weight: 700;
+        background-color: hsl(var(--clr-white));
+        z-index: 300;
+        transform: translateX(-100%);
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .primary-nav[data-visible=true] {
+        transform: translateX(0);
+    }
+}

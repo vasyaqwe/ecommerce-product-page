@@ -1,0 +1,35 @@
+@use '../base' as *;
+
+.primary-header {
+    padding: 1.3em 1.1em;
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    &__logo {
+        margin-right: auto;
+    }
+
+    @media(min-width: 40em) {
+        align-items: center;
+
+        &__logo {
+            margin-right: min(2vw, 2rem);
+        }
+
+    }
+
+    @media(min-width: 45em) {
+        position: relative;
+        padding: min(5vw, 1.8em) clamp(1.1em, 8vw, 9em);
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            background-color: hsl(var(--clr-primary-600) / .4);
+            width: 82.5%;
+            height: 1px;
+        }
+    }
+}
