@@ -337,15 +337,17 @@ function changeBtnFocus(e) {
 
 function changeImg(e) {
   var targetImgBtn = e.target;
-  var targetImg = targetImgBtn.getAttribute('data-img');
+  var targetImg = targetImgBtn.getAttribute('data-img'); //if it's not the lightbox images//
 
   if (targetImg === 'img1' || targetImg === 'img2' || targetImg === 'img3' || targetImg === 'img4') {
     hideContent('.preview-imgs__img');
-    imgBtnsList.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
+    imgBtnsList.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false); //if it's not the lightbox images//
+    //if it's the lightbox images//
   } else {
     imgBtnsListLightbox.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
     hideContent('.lightbox__imgs__img');
-  }
+  } //if it's the lightbox images//
+
 
   targetImgBtn.setAttribute('aria-selected', true);
   showContent(targetImg);
@@ -398,7 +400,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1586" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51976" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

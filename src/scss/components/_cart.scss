@@ -89,6 +89,10 @@
         }
     }
 
+    i {
+        margin-left: auto;
+    }
+
     &[data-visible=true] {
         display: block;
     }
