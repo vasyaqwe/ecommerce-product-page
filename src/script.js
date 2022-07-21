@@ -88,9 +88,6 @@ addToCartBtn.addEventListener('click', () => {
     };
 
 })
-
-
-
 //add and delete cart items//
 
 //increment qty//
@@ -214,15 +211,18 @@ function changeImg(e) {
     const targetImgBtn = e.target;
     const targetImg = targetImgBtn.getAttribute('data-img');
 
+    //if it's not the lightbox images//
     if (targetImg === 'img1' || targetImg === 'img2' || targetImg === 'img3' || targetImg === 'img4') {
         hideContent('.preview-imgs__img');
         imgBtnsList.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
+        //if it's not the lightbox images//
+        //if it's the lightbox images//
     } else {
         imgBtnsListLightbox.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
         hideContent('.lightbox__imgs__img');
     }
+    //if it's the lightbox images//
     targetImgBtn.setAttribute('aria-selected', true);
-
     showContent(targetImg);
 }
 //img buttons//
