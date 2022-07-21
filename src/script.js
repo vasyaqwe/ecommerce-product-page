@@ -61,7 +61,6 @@ addToCartBtn.addEventListener('click', () => {
     const pill = cartToggle.children[1];
     pill.setAttribute('data-visible', true);
     pill.innerText = qtyCount;
-
     cartContent.innerHTML = `<div class="cart__content__info flex">
                         <img class="cart__content__img" src="image-product-1-thumbnail.33e4c89c.jpg"
                             alt="white sneakers">

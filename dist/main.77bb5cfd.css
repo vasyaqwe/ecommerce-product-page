@@ -551,16 +551,16 @@ i:hover {
   z-index: 50;
   padding: 1.4em 1.3em;
   border-radius: 0.75rem;
-  position: fixed;
+  position: absolute;
   background-color: hsl(var(--clr-white));
   box-shadow: rgba(0, 0, 0, 0.2) 0px 25px 25px 0px;
   inset: 74px 7.5px auto 7.5px;
   display: none;
 }
-@media (min-width: 35em) {
+@media (min-width: 45em) {
   .cart {
-    min-width: 340px;
-    inset: 90px 100px auto auto;
+    min-width: 360px;
+    inset: 60px 50px auto auto;
   }
 }
 .cart__title::after {
@@ -574,7 +574,7 @@ i:hover {
 }
 .cart__content {
   height: 100%;
-  padding: 4em 0 2em;
+  padding: 4em 0 1em;
   gap: 1rem;
 }
 .cart__content__p {

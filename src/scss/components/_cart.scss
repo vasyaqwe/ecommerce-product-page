@@ -30,16 +30,16 @@
     z-index: 50;
     padding: 1.4em 1.3em;
     border-radius: 0.75rem;
-    position: fixed;
+    position: absolute;
     background-color: hsl(var(--clr-white));
     box-shadow: rgba(0, 0, 0, 0.2) 0px 25px 25px 0px;
     inset: 74px 7.5px auto 7.5px;
     // height: 240px;
     display: none;
 
-    @media(min-width: 35em) {
-        min-width: 340px;
-        inset: 90px 100px auto auto;
+    @media(min-width: 45em) {
+        min-width: 360px;
+        inset: 60px 50px auto auto;
     }
 
     &__title {
@@ -56,7 +56,7 @@
 
     &__content {
         height: 100%;
-        padding: 4em 0 2em;
+        padding: 4em 0 1em;
 
         gap: 1rem;
 
