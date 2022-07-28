@@ -264,6 +264,7 @@ select {
 .primary-header {
   padding: 1.3em 1.1em;
   align-items: flex-start;
+  position: relative;
   justify-content: space-between;
 }
 .primary-header__logo {
@@ -279,7 +280,6 @@ select {
 }
 @media (min-width: 45em) {
   .primary-header {
-    position: relative;
     padding: min(5vw, 1.8em) clamp(1.1em, 8vw, 9em);
   }
   .primary-header::after {
@@ -524,7 +524,6 @@ i:hover {
 
 .cart-container {
   align-items: center;
-  position: relative;
 }
 .cart-container__pfp {
   cursor: pointer;
@@ -536,6 +535,7 @@ i:hover {
 @media (min-width: 45em) {
   .cart-container {
     margin-left: auto;
+    position: relative;
   }
   .cart-container__pfp {
     max-width: 50px;
@@ -554,10 +554,11 @@ i:hover {
   position: absolute;
   background-color: hsl(var(--clr-white));
   box-shadow: rgba(0, 0, 0, 0.2) 0px 25px 25px 0px;
-  inset: 74px 7.5px auto 7.5px;
+  inset: 75px 7px auto 7px;
+  height: 240px;
   display: none;
 }
-@media (min-width: 45em) {
+@media (min-width: 40em) {
   .cart {
     min-width: 360px;
     inset: 60px 50px auto auto;

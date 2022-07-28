@@ -3,7 +3,7 @@
 .primary-header {
     padding: 1.3em 1.1em;
     align-items: flex-start;
-
+    position: relative;
     justify-content: space-between;
 
     &__logo {
@@ -20,7 +20,6 @@
     }
 
     @media(min-width: 45em) {
-        position: relative;
         padding: min(5vw, 1.8em) clamp(1.1em, 8vw, 9em);
 
         &::after {
