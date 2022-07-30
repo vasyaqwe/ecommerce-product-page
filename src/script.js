@@ -18,10 +18,10 @@ const prevBtnLightbox = document.querySelector('.btn--prev--lightbox');
 const nextBtnLightbox = document.querySelector('.btn--next--lightbox');
 
 
-const imgBtnsList = document.querySelector('[role="img-buttons-list"]');
-const imgBtns = document.querySelectorAll('[role="img-button"]');
-const imgBtnsListLightbox = document.querySelector('[role="img-buttons-list--lightbox"]');
-const imgBtnsLightbox = document.querySelectorAll('[role="img-button--lightbox"]');
+const imgBtnsList = document.querySelector('.img-btns');
+const imgBtns = document.querySelectorAll('[role="button"]');
+const imgBtnsListLightbox = document.querySelector('.lightbox__img-btns');
+const imgBtnsLightbox = document.querySelectorAll('[role="button-lightbox"]');
 
 const btnMinus = document.querySelector('.btn--minus');
 const btnPlus = document.querySelector('.btn--plus');

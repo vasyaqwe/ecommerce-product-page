@@ -555,7 +555,6 @@ i:hover {
   background-color: hsl(var(--clr-white));
   box-shadow: rgba(0, 0, 0, 0.2) 0px 25px 25px 0px;
   inset: 75px 7px auto 7px;
-  height: 240px;
   display: none;
 }
 @media (min-width: 40em) {
@@ -602,6 +601,7 @@ i:hover {
 }
 .cart i {
   margin-left: auto;
+  margin-right: 0rem;
 }
 .cart[data-visible=true] {
   display: block;

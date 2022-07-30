@@ -134,10 +134,10 @@ var lightbox = document.querySelector('.lightbox');
 var closeBtn = document.querySelector('.btn--close');
 var prevBtnLightbox = document.querySelector('.btn--prev--lightbox');
 var nextBtnLightbox = document.querySelector('.btn--next--lightbox');
-var imgBtnsList = document.querySelector('[role="img-buttons-list"]');
-var imgBtns = document.querySelectorAll('[role="img-button"]');
-var imgBtnsListLightbox = document.querySelector('[role="img-buttons-list--lightbox"]');
-var imgBtnsLightbox = document.querySelectorAll('[role="img-button--lightbox"]');
+var imgBtnsList = document.querySelector('.img-btns');
+var imgBtns = document.querySelectorAll('[role="button"]');
+var imgBtnsListLightbox = document.querySelector('.lightbox__img-btns');
+var imgBtnsLightbox = document.querySelectorAll('[role="button-lightbox"]');
 var btnMinus = document.querySelector('.btn--minus');
 var btnPlus = document.querySelector('.btn--plus');
 var qtyEl = document.querySelector('.qty');
@@ -400,7 +400,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1415" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50904" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
