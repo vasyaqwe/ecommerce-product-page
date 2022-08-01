@@ -5,7 +5,8 @@
         cursor: pointer;
         max-width: 25px;
 
-        &:hover {
+        &:hover,
+        &:focus {
             opacity: 0.7;
         }
     }
