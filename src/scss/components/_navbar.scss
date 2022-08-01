@@ -14,17 +14,20 @@
             color: hsl(var(--clr-primary-700));
         }
 
-        &__item {
+        &__link {
             position: relative;
 
-            &:hover {
+            &:hover,
+            &:focus {
                 color: hsl(var(--clr-primary-800));
             }
 
-            &:hover::after {
+            &:hover::after,
+            &:focus::after {
                 content: '';
                 position: absolute;
-                bottom: -44px;
+                bottom: -43px;
+                z-index: 100;
                 left: 0;
                 background-color: hsl(var(--clr-accent));
                 width: 100%;

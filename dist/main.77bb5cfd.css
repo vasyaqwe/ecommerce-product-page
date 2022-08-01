@@ -347,7 +347,7 @@ select {
 .btn--cart {
   position: relative;
 }
-.btn--cart:hover svg path {
+.btn--cart:hover, .btn--cart:focus svg path {
   fill: hsl(var(--clr-black));
 }
 .btn--cart .pill {
@@ -424,8 +424,9 @@ i:hover {
   display: grid;
   place-items: center;
 }
-.btn--prev--lightbox:hover svg path,
-.btn--next--lightbox:hover svg path {
+.btn--prev--lightbox:hover, .btn--prev--lightbox:focus svg path,
+.btn--next--lightbox:hover,
+.btn--next--lightbox:focus svg path {
   stroke: hsl(var(--clr-accent));
 }
 
@@ -488,8 +489,9 @@ i:hover {
   display: grid;
   place-items: center;
 }
-.btn--minus:hover svg use,
-.btn--plus:hover svg use {
+.btn--minus:hover, .btn--minus:focus svg use,
+.btn--plus:hover,
+.btn--plus:focus svg use {
   fill: hsl(var(--clr-accent)/0.75);
 }
 
@@ -502,7 +504,7 @@ i:hover {
   justify-content: center;
   box-shadow: hsl(var(--clr-accent)) 0px 8px 35px -10px;
 }
-.btn--add-to-cart:hover {
+.btn--add-to-cart:hover, .btn--add-to-cart:focus {
   background-color: hsl(var(--clr-accent)/0.75);
 }
 .btn--add-to-cart:active {
@@ -618,16 +620,17 @@ i:hover {
     gap: min(2vw, 2.25rem);
     color: hsl(var(--clr-primary-700));
   }
-  .nav__item {
+  .nav__link {
     position: relative;
   }
-  .nav__item:hover {
+  .nav__link:hover, .nav__link:focus {
     color: hsl(var(--clr-primary-800));
   }
-  .nav__item:hover::after {
+  .nav__link:hover::after, .nav__link:focus::after {
     content: "";
     position: absolute;
-    bottom: -44px;
+    bottom: -43px;
+    z-index: 100;
     left: 0;
     background-color: hsl(var(--clr-accent));
     width: 100%;

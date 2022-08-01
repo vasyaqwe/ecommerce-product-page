@@ -27,7 +27,9 @@
 }
 
 .btn--cart {
-    &:hover svg path {
+
+    &:hover,
+    &:focus svg path {
         fill: hsl(var(--clr-black));
     }
 
@@ -120,7 +122,8 @@ i {
     display: grid;
     place-items: center;
 
-    &:hover svg path {
+    &:hover,
+    &:focus svg path {
         stroke: hsl(var(--clr-accent));
     }
 }
@@ -187,7 +190,8 @@ i {
     display: grid;
     place-items: center;
 
-    &:hover svg use {
+    &:hover,
+    &:focus svg use {
         fill: hsl(var(--clr-accent) / 0.75);
     }
 }
@@ -201,7 +205,8 @@ i {
     justify-content: center;
     box-shadow: hsl(var(--clr-accent)) 0px 8px 35px -10px;
 
-    &:hover {
+    &:hover,
+    &:focus {
         background-color: hsl(var(--clr-accent) / 0.75);
     }
 
