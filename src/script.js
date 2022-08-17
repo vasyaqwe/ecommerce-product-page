@@ -81,18 +81,15 @@ addToCartBtn.addEventListener('click', () => {
         btnDelete.addEventListener('click', () => {
             pill.setAttribute('data-visible', false);
             cartContent.innerHTML = `<p class="cart__content__p fs-400 text-primary-700 fw-700">Your cart is empty.</p>`;
-        });
-    } else {
-        console.log('yeess')
-    };
-
+        })
+    }
 })
 //add and delete cart items//
 
 //increment qty//
 let qtyCount = 1;
 
-const incrementQty = (btn) => {
+const incrementQty = () => {
     qtyCount >= 0 ? qtyCount++ : qtyCount;
     qtyEl.innerText = qtyCount;
 }
@@ -103,11 +100,11 @@ const decrementQty = () => {
 btnMinus.addEventListener('click', () => {
     decrementQty();
     decrementPrice();
-});
+})
 btnPlus.addEventListener('click', () => {
     incrementQty();
     incrementPrice();
-});
+})
 //increment qty//
 
 //change price//
@@ -136,21 +133,21 @@ prevBtnMobile.addEventListener('click', () => {
     activeImg--;
     if (activeImg < 0) {
         activeImg = previewImgs.length - 1;
-    };
+    }
     setActiveImg(previewImgs);
 });
 nextBtnMobile.addEventListener('click', () => {
     activeImg++;
     if (activeImg > previewImgs.length - 1) {
         activeImg = 0;
-    };
+    }
     setActiveImg(previewImgs);
 });
 prevBtnLightbox.addEventListener('click', () => {
     activeImg--;
     if (activeImg < 0) {
         activeImg = lightboxImgs.length - 1;
-    };
+    }
     setActiveImg(lightboxImgs);
     imgBtnsListLightbox.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
     imgBtnsLightbox[activeImg].setAttribute('aria-selected', true);
@@ -159,7 +156,7 @@ nextBtnLightbox.addEventListener('click', () => {
     activeImg++;
     if (activeImg > lightboxImgs.length - 1) {
         activeImg = 0;
-    };
+    }
     setActiveImg(lightboxImgs);
     imgBtnsListLightbox.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
     imgBtnsLightbox[activeImg].setAttribute('aria-selected', true);
@@ -168,7 +165,7 @@ nextBtnLightbox.addEventListener('click', () => {
 function setActiveImg(imgs) {
     imgs.forEach(img => img.setAttribute('data-visible', false));
     imgs[activeImg].setAttribute('data-visible', true);
-};
+}
 //image slider on mobile//
 
 //img buttons//
@@ -192,19 +189,19 @@ function changeBtnFocus(e) {
             buttonFocus--;
             if (buttonFocus < 0) {
                 buttonFocus = imgBtns.length - 1;
-            };
+            }
         } else if (e.key === 'ArrowRight') {
             buttonFocus++;
             if (buttonFocus >= imgBtns.length) {
                 buttonFocus = 0;
-            };
-        };
+            }
+        }
         imgBtns[buttonFocus].setAttribute('tabindex', 0);
         imgBtns[buttonFocus].focus();
         imgBtnsLightbox[buttonFocus].setAttribute('tabindex', 0);
         imgBtnsLightbox[buttonFocus].focus();
-    };
-};
+    }
+}
 
 function changeImg(e) {
     const targetImgBtn = e.target;
