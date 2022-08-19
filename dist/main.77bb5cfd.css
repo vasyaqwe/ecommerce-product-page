@@ -531,7 +531,7 @@ i:hover {
   cursor: pointer;
   max-width: 25px;
 }
-.cart-container__pfp:hover {
+.cart-container__pfp:hover, .cart-container__pfp:focus {
   opacity: 0.7;
 }
 @media (min-width: 45em) {

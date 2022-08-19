@@ -117,158 +117,70 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"script.js":[function(require,module,exports) {
-var nav = document.querySelector('.primary-nav');
-var navToggle = document.querySelector('.nav-toggle');
-var cartToggle = document.querySelector('.btn--cart');
-var cart = document.querySelector('.cart');
-var cartContent = document.querySelector('.cart__content');
-var addToCartBtn = document.querySelector('.btn--add-to-cart');
-var imgs = document.querySelectorAll('.preview-imgs__img');
-var lightboxImgs = document.querySelectorAll('.lightbox__imgs__img');
-var dim = document.querySelector('.dim');
-var lightbox = document.querySelector('.lightbox');
-var closeBtn = document.querySelector('.btn--close');
+})({"mobileSlider.js":[function(require,module,exports) {
+var prevBtnMobile = document.querySelector('.btn--prev--preview');
+var nextBtnMobile = document.querySelector('.btn--next--preview');
 var prevBtnLightbox = document.querySelector('.btn--prev--lightbox');
 var nextBtnLightbox = document.querySelector('.btn--next--lightbox');
-var previewImgBtnsList = document.querySelector('.img-btns');
-var previewImgBtns = document.querySelectorAll('[role="button"]');
-var lightboxImgBtnsList = document.querySelector('.lightbox__img-btns');
-var lightboxImgBtns = document.querySelectorAll('[role="button-lightbox"]');
-var btnMinus = document.querySelector('.btn--minus');
-var btnPlus = document.querySelector('.btn--plus');
-var qtyEl = document.querySelector('.qty');
-var price = document.querySelector('.price-num');
-var priceCrossed = document.querySelector('.price-crossed'); //nav and cart toggling//
+var previewImgs = document.querySelectorAll('.preview-imgs__img');
+var lightboxImgs = document.querySelectorAll('.lightbox__imgs__img');
+var imgBtnsListLightbox = document.querySelector('.lightbox__img-btns');
+var imgBtnsLightbox = document.querySelectorAll('[role="button-lightbox"]');
+var activeImg = 0;
+prevBtnMobile.addEventListener('click', function () {
+  activeImg--;
 
-navToggle.addEventListener('click', function () {
-  var visibility = nav.getAttribute('data-visible');
-
-  if (visibility === 'false') {
-    nav.setAttribute('data-visible', true);
-    navToggle.setAttribute('aria-expanded', true);
-    dim.setAttribute('data-visible', true);
-  } else {
-    nav.setAttribute('data-visible', false);
-    navToggle.setAttribute('aria-expanded', false);
-    dim.setAttribute('data-visible', false);
+  if (activeImg < 0) {
+    activeImg = previewImgs.length - 1;
   }
+
+  setActiveImg(previewImgs);
+  setActiveImg(lightboxImgs);
+  setActiveState(imgBtnsListLightbox, imgBtnsLightbox);
 });
-cartToggle.addEventListener('click', function () {
-  var visibility = cart.getAttribute('data-visible');
+nextBtnMobile.addEventListener('click', function () {
+  activeImg++;
 
-  if (visibility === 'false') {
-    cart.setAttribute('data-visible', true);
-    cartToggle.setAttribute('aria-expanded', true);
-  } else {
-    cart.setAttribute('data-visible', false);
-    cartToggle.setAttribute('aria-expanded', false);
+  if (activeImg > previewImgs.length - 1) {
+    activeImg = 0;
   }
-}); //nav and cart toggling//
-//add and delete cart items//
 
-addToCartBtn.addEventListener('click', function () {
-  var pill = cartToggle.children[1];
-  pill.setAttribute('data-visible', true);
-  pill.innerText = qtyCount;
-  cartContent.innerHTML = "<div class=\"cart__content__info flex\">\n                        <img class=\"cart__content__img\" src=\"image-product-1-thumbnail.33e4c89c.jpg\"\n                            alt=\"white sneakers\">\n                        <div class=\"cart__content__details flex\">\n                            <p class=\"text-primary-700 fs-400 cart__content__title\">Fall Limited Edition Sneakers</p>\n                            <div class=\"cart__content__price fs-400 text-primary-700\">$<span\n                                    class=\"cart-price\">125.00</span>\n                                x ".concat(qtyCount, "\n                                <strong>$<span class=\"cart-price--sum\">").concat(125 * qtyCount, ".00</span></strong>\n                            </div>\n                        </div>\n                        <i class=\"fa-solid fa-trash-can btn--delete\"></i>\n                    </div>\n                    <button class=\"btn btn--checkout text-white fw-700\">Checkout</button>");
-  var btnDelete = document.querySelector('.btn--delete');
-
-  if (btnDelete) {
-    btnDelete.addEventListener('click', function () {
-      pill.setAttribute('data-visible', false);
-      cartContent.innerHTML = "<p class=\"cart__content__p fs-400 text-primary-700 fw-700\">Your cart is empty.</p>";
-    });
-  }
-}); //add and delete cart items//
-//increment qty//
-
-var qtyCount = 1;
-btnMinus.addEventListener('click', function () {
-  decrementQty();
-  decrementPrice();
+  setActiveImg(previewImgs);
+  setActiveImg(lightboxImgs);
+  setActiveState(imgBtnsListLightbox, imgBtnsLightbox);
 });
-btnPlus.addEventListener('click', function () {
-  incrementQty();
-  incrementPrice();
+prevBtnLightbox.addEventListener('click', function () {
+  activeImg--;
+
+  if (activeImg < 0) {
+    activeImg = lightboxImgs.length - 1;
+  }
+
+  setActiveImg(lightboxImgs);
+  setActiveState(imgBtnsListLightbox, imgBtnsLightbox);
+});
+nextBtnLightbox.addEventListener('click', function () {
+  activeImg++;
+
+  if (activeImg > lightboxImgs.length - 1) {
+    activeImg = 0;
+  }
+
+  setActiveImg(lightboxImgs);
+  setActiveState(imgBtnsListLightbox, imgBtnsLightbox);
 });
 
-var incrementQty = function incrementQty() {
-  qtyCount >= 0 ? qtyCount++ : qtyCount;
-  qtyEl.innerText = qtyCount;
-};
-
-var decrementQty = function decrementQty() {
-  qtyCount >= 2 ? qtyCount-- : qtyCount;
-  qtyEl.innerText = qtyCount;
-};
-
-var incrementPrice = function incrementPrice() {
-  var priceNum = +price.innerText;
-  var priceNumCrossed = +priceCrossed.innerText;
-
-  if (priceNum >= 125) {
-    price.innerText = "".concat(priceNum + 125, ".00");
-    priceCrossed.innerText = "".concat(priceNumCrossed + 250, ".00");
-  }
-};
-
-var decrementPrice = function decrementPrice() {
-  var priceNum = +price.innerText;
-  var priceNumCrossed = +priceCrossed.innerText;
-
-  if (priceNum > 125) {
-    price.innerText = "".concat(priceNum - 125, ".00");
-    priceCrossed.innerText = "".concat(priceNumCrossed - 250, ".00");
-  }
-};
-
-previewImgBtns.forEach(function (btn) {
-  btn.addEventListener('click', changeImg);
-});
-lightboxImgBtns.forEach(function (btn) {
-  btn.addEventListener('click', changeImg);
-});
-
-function changeImg(e) {
-  var targetImgBtn = e.target;
-  var targetImg = targetImgBtn.getAttribute('data-img');
-
-  if (isPreviewImgs(targetImg)) {
-    previewImgBtnsList.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
-    hideContent('.preview-imgs__img');
-  } else {
-    lightboxImgBtnsList.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
-    hideContent('.lightbox__imgs__img');
-  }
-
-  targetImgBtn.setAttribute('aria-selected', true);
-  showContent(targetImg);
-} //img buttons//
-
-
-function hideContent(content) {
-  document.querySelectorAll(content).forEach(function (item) {
-    item.setAttribute('data-visible', false);
+function setActiveImg(imgs) {
+  imgs.forEach(function (img) {
+    return img.setAttribute('data-visible', false);
   });
+  imgs[activeImg].setAttribute('data-visible', true);
 }
 
-function showContent(target) {
-  document.getElementById(target).setAttribute('data-visible', true);
+function setActiveState(btnsList, btns) {
+  btnsList.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
+  btns[activeImg].setAttribute('aria-selected', true);
 }
-
-function isPreviewImgs(targetImg) {
-  return targetImg === 'img1' || targetImg === 'img2' || targetImg === 'img3' || targetImg === 'img4';
-}
-
-imgs.forEach(function (img) {
-  img.addEventListener('click', function () {
-    lightbox.showModal();
-  });
-});
-closeBtn.addEventListener('click', function () {
-  lightbox.close();
-});
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -473,5 +385,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","script.js"], null)
-//# sourceMappingURL=/script.75da7f30.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","mobileSlider.js"], null)
+//# sourceMappingURL=/mobileSlider.b3be3cfa.js.map

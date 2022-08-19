@@ -5,23 +5,20 @@ const cart = document.querySelector('.cart');
 const cartContent = document.querySelector('.cart__content');
 const addToCartBtn = document.querySelector('.btn--add-to-cart');
 
-const prevBtnMobile = document.querySelector('.btn--prev--preview');
-const nextBtnMobile = document.querySelector('.btn--next--preview');
-const previewImgs = document.querySelectorAll('.preview-imgs__img');
+const imgs = document.querySelectorAll('.preview-imgs__img');
 const lightboxImgs = document.querySelectorAll('.lightbox__imgs__img');
 const dim = document.querySelector('.dim');
 
-const imgs = document.querySelectorAll('.preview-imgs__img');
 const lightbox = document.querySelector('.lightbox');
 const closeBtn = document.querySelector('.btn--close');
 const prevBtnLightbox = document.querySelector('.btn--prev--lightbox');
 const nextBtnLightbox = document.querySelector('.btn--next--lightbox');
 
 
-const imgBtnsList = document.querySelector('.img-btns');
-const imgBtns = document.querySelectorAll('[role="button"]');
-const imgBtnsListLightbox = document.querySelector('.lightbox__img-btns');
-const imgBtnsLightbox = document.querySelectorAll('[role="button-lightbox"]');
+const previewImgBtnsList = document.querySelector('.img-btns');
+const previewImgBtns = document.querySelectorAll('[role="button"]');
+const lightboxImgBtnsList = document.querySelector('.lightbox__img-btns');
+const lightboxImgBtns = document.querySelectorAll('[role="button-lightbox"]');
 
 const btnMinus = document.querySelector('.btn--minus');
 const btnPlus = document.querySelector('.btn--plus');
@@ -88,6 +85,14 @@ addToCartBtn.addEventListener('click', () => {
 
 //increment qty//
 let qtyCount = 1;
+btnMinus.addEventListener('click', () => {
+    decrementQty();
+    decrementPrice();
+})
+btnPlus.addEventListener('click', () => {
+    incrementQty();
+    incrementPrice();
+})
 
 const incrementQty = () => {
     qtyCount >= 0 ? qtyCount++ : qtyCount;
@@ -97,17 +102,7 @@ const decrementQty = () => {
     qtyCount >= 2 ? qtyCount-- : qtyCount;
     qtyEl.innerText = qtyCount;
 }
-btnMinus.addEventListener('click', () => {
-    decrementQty();
-    decrementPrice();
-})
-btnPlus.addEventListener('click', () => {
-    incrementQty();
-    incrementPrice();
-})
-//increment qty//
 
-//change price//
 const incrementPrice = () => {
     let priceNum = +price.innerText;
     let priceNumCrossed = +priceCrossed.innerText;
@@ -124,100 +119,28 @@ const decrementPrice = () => {
         priceCrossed.innerText = `${priceNumCrossed - 250}.00`;
     }
 }
-//change price//
 
-//image slider on mobile//
-let activeImg = 0;
-
-prevBtnMobile.addEventListener('click', () => {
-    activeImg--;
-    if (activeImg < 0) {
-        activeImg = previewImgs.length - 1;
-    }
-    setActiveImg(previewImgs);
-});
-nextBtnMobile.addEventListener('click', () => {
-    activeImg++;
-    if (activeImg > previewImgs.length - 1) {
-        activeImg = 0;
-    }
-    setActiveImg(previewImgs);
-});
-prevBtnLightbox.addEventListener('click', () => {
-    activeImg--;
-    if (activeImg < 0) {
-        activeImg = lightboxImgs.length - 1;
-    }
-    setActiveImg(lightboxImgs);
-    imgBtnsListLightbox.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
-    imgBtnsLightbox[activeImg].setAttribute('aria-selected', true);
-})
-nextBtnLightbox.addEventListener('click', () => {
-    activeImg++;
-    if (activeImg > lightboxImgs.length - 1) {
-        activeImg = 0;
-    }
-    setActiveImg(lightboxImgs);
-    imgBtnsListLightbox.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
-    imgBtnsLightbox[activeImg].setAttribute('aria-selected', true);
-})
-
-function setActiveImg(imgs) {
-    imgs.forEach(img => img.setAttribute('data-visible', false));
-    imgs[activeImg].setAttribute('data-visible', true);
-}
-//image slider on mobile//
-
-//img buttons//
-let buttonFocus = 0;
-
-imgBtnsList.addEventListener('keydown', changeBtnFocus);
-imgBtnsListLightbox.addEventListener('keydown', changeBtnFocus);
-
-imgBtns.forEach(btn => {
+previewImgBtns.forEach(btn => {
     btn.addEventListener('click', changeImg)
 })
-imgBtnsLightbox.forEach(btn => {
+lightboxImgBtns.forEach(btn => {
     btn.addEventListener('click', changeImg)
 })
 
-function changeBtnFocus(e) {
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        imgBtns[buttonFocus].setAttribute('tabindex', -1);
-        imgBtnsLightbox[buttonFocus].setAttribute('tabindex', -1);
-        if (e.key === 'ArrowLeft') {
-            buttonFocus--;
-            if (buttonFocus < 0) {
-                buttonFocus = imgBtns.length - 1;
-            }
-        } else if (e.key === 'ArrowRight') {
-            buttonFocus++;
-            if (buttonFocus >= imgBtns.length) {
-                buttonFocus = 0;
-            }
-        }
-        imgBtns[buttonFocus].setAttribute('tabindex', 0);
-        imgBtns[buttonFocus].focus();
-        imgBtnsLightbox[buttonFocus].setAttribute('tabindex', 0);
-        imgBtnsLightbox[buttonFocus].focus();
-    }
-}
+
 
 function changeImg(e) {
     const targetImgBtn = e.target;
     const targetImg = targetImgBtn.getAttribute('data-img');
 
-    //if it's not the lightbox images//
-    if (targetImg === 'img1' || targetImg === 'img2' || targetImg === 'img3' || targetImg === 'img4') {
+    if (isPreviewImgs(targetImg)) {
+        previewImgBtnsList.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
         hideContent('.preview-imgs__img');
-        imgBtnsList.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
-        //if it's not the lightbox images//
-        //if it's the lightbox images//
     } else {
-        imgBtnsListLightbox.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
+        lightboxImgBtnsList.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
         hideContent('.lightbox__imgs__img');
     }
-    //if it's the lightbox images//
+
     targetImgBtn.setAttribute('aria-selected', true);
     showContent(targetImg);
 }
@@ -230,7 +153,9 @@ function hideContent(content) {
 function showContent(target) {
     document.getElementById(target).setAttribute('data-visible', true);
 }
-
+function isPreviewImgs(targetImg) {
+    return targetImg === 'img1' || targetImg === 'img2' || targetImg === 'img3' || targetImg === 'img4';
+}
 imgs.forEach(img => {
     img.addEventListener('click', () => {
         lightbox.showModal()
