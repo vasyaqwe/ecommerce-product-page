@@ -39,7 +39,7 @@ body {
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
-.dim[data-visible=true] {
+.dim[data-visible] {
   opacity: 1;
 }
 
@@ -489,9 +489,8 @@ i:hover {
   display: grid;
   place-items: center;
 }
-.btn--minus:hover, .btn--minus:focus svg use,
-.btn--plus:hover,
-.btn--plus:focus svg use {
+.btn--minus:hover svg use,
+.btn--plus:hover svg use {
   fill: hsl(var(--clr-accent)/0.75);
 }
 
@@ -504,7 +503,7 @@ i:hover {
   justify-content: center;
   box-shadow: hsl(var(--clr-accent)) 0px 8px 35px -10px;
 }
-.btn--add-to-cart:hover, .btn--add-to-cart:focus {
+.btn--add-to-cart:hover {
   background-color: hsl(var(--clr-accent)/0.75);
 }
 .btn--add-to-cart:active {
@@ -605,7 +604,7 @@ i:hover {
   margin-left: auto;
   margin-right: 0rem;
 }
-.cart[data-visible=true] {
+.cart[data-visible] {
   display: block;
 }
 
@@ -648,7 +647,7 @@ i:hover {
     transform: translateX(-100%);
     transition: transform 0.5s ease-in-out;
   }
-  .primary-nav[data-visible=true] {
+  .primary-nav[data-visible] {
     transform: translateX(0);
   }
 }

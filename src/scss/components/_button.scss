@@ -99,9 +99,6 @@ i {
     position: absolute;
     top: 0;
     right: 32px;
-    // background-image: url('../../images/icon-close.svg');
-    // background-repeat: no-repeat;
-    // background-size: 90%;
     width: 20px;
     aspect-ratio: 1;
 
@@ -115,7 +112,6 @@ i {
     background-color: #fff;
     border-radius: 100vmax;
     width: 50px;
-    // padding: 1.3em;
     aspect-ratio: 1;
     position: absolute;
     top: 50%;
@@ -190,8 +186,7 @@ i {
     display: grid;
     place-items: center;
 
-    &:hover,
-    &:focus svg use {
+    &:hover svg use {
         fill: hsl(var(--clr-accent) / 0.75);
     }
 }
@@ -205,8 +200,7 @@ i {
     justify-content: center;
     box-shadow: hsl(var(--clr-accent)) 0px 8px 35px -10px;
 
-    &:hover,
-    &:focus {
+    &:hover {
         background-color: hsl(var(--clr-accent) / 0.75);
     }
 

@@ -139,34 +139,16 @@ var btnMinus = document.querySelector('.btn--minus');
 var btnPlus = document.querySelector('.btn--plus');
 var qtyEl = document.querySelector('.qty');
 var price = document.querySelector('.price-num');
-var priceCrossed = document.querySelector('.price-crossed'); //nav and cart toggling//
-
+var priceCrossed = document.querySelector('.price-crossed');
 navToggle.addEventListener('click', function () {
-  var visibility = nav.getAttribute('data-visible');
-
-  if (visibility === 'false') {
-    nav.setAttribute('data-visible', true);
-    navToggle.setAttribute('aria-expanded', true);
-    dim.setAttribute('data-visible', true);
-  } else {
-    nav.setAttribute('data-visible', false);
-    navToggle.setAttribute('aria-expanded', false);
-    dim.setAttribute('data-visible', false);
-  }
+  navToggle.setAttribute('aria-expanded', !nav.hasAttribute('data-visible'));
+  nav.toggleAttribute('data-visible');
+  dim.toggleAttribute('data-visible');
 });
 cartToggle.addEventListener('click', function () {
-  var visibility = cart.getAttribute('data-visible');
-
-  if (visibility === 'false') {
-    cart.setAttribute('data-visible', true);
-    cartToggle.setAttribute('aria-expanded', true);
-  } else {
-    cart.setAttribute('data-visible', false);
-    cartToggle.setAttribute('aria-expanded', false);
-  }
-}); //nav and cart toggling//
-//add and delete cart items//
-
+  cartToggle.setAttribute('aria-expanded', !cart.hasAttribute('data-visible'));
+  cart.toggleAttribute('data-visible');
+});
 addToCartBtn.addEventListener('click', function () {
   var pill = cartToggle.children[1];
   pill.setAttribute('data-visible', true);
@@ -180,9 +162,7 @@ addToCartBtn.addEventListener('click', function () {
       cartContent.innerHTML = "<p class=\"cart__content__p fs-400 text-primary-700 fw-700\">Your cart is empty.</p>";
     });
   }
-}); //add and delete cart items//
-//increment qty//
-
+});
 var qtyCount = 1;
 btnMinus.addEventListener('click', function () {
   decrementQty();
@@ -234,7 +214,7 @@ function changeImg(e) {
   var targetImgBtn = e.target;
   var targetImg = targetImgBtn.getAttribute('data-img');
 
-  if (isPreviewImgs(targetImg)) {
+  if (document.getElementById(targetImg).dataset.img === 'preview') {
     previewImgBtnsList.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
     hideContent('.preview-imgs__img');
   } else {
@@ -244,8 +224,7 @@ function changeImg(e) {
 
   targetImgBtn.setAttribute('aria-selected', true);
   showContent(targetImg);
-} //img buttons//
-
+}
 
 function hideContent(content) {
   document.querySelectorAll(content).forEach(function (item) {
@@ -255,10 +234,6 @@ function hideContent(content) {
 
 function showContent(target) {
   document.getElementById(target).setAttribute('data-visible', true);
-}
-
-function isPreviewImgs(targetImg) {
-  return targetImg === 'img1' || targetImg === 'img2' || targetImg === 'img3' || targetImg === 'img4';
 }
 
 imgs.forEach(function (img) {
@@ -297,7 +272,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50249" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51420" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

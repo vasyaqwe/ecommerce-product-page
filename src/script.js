@@ -27,33 +27,17 @@ const qtyEl = document.querySelector('.qty');
 const price = document.querySelector('.price-num');
 const priceCrossed = document.querySelector('.price-crossed');
 
-//nav and cart toggling//
 navToggle.addEventListener('click', () => {
-    const visibility = nav.getAttribute('data-visible');
-    if (visibility === 'false') {
-        nav.setAttribute('data-visible', true);
-        navToggle.setAttribute('aria-expanded', true);
-        dim.setAttribute('data-visible', true);
-    } else {
-        nav.setAttribute('data-visible', false);
-        navToggle.setAttribute('aria-expanded', false);
-        dim.setAttribute('data-visible', false);
-    }
+    navToggle.setAttribute('aria-expanded', !nav.hasAttribute('data-visible'));
+    nav.toggleAttribute('data-visible');
+    dim.toggleAttribute('data-visible');
 })
 
 cartToggle.addEventListener('click', () => {
-    const visibility = cart.getAttribute('data-visible');
-    if (visibility === 'false') {
-        cart.setAttribute('data-visible', true);
-        cartToggle.setAttribute('aria-expanded', true);
-    } else {
-        cart.setAttribute('data-visible', false);
-        cartToggle.setAttribute('aria-expanded', false);
-    }
+    cartToggle.setAttribute('aria-expanded', !cart.hasAttribute('data-visible'));
+    cart.toggleAttribute('data-visible');
 })
-//nav and cart toggling//
 
-//add and delete cart items//
 addToCartBtn.addEventListener('click', () => {
     const pill = cartToggle.children[1];
     pill.setAttribute('data-visible', true);
@@ -81,9 +65,7 @@ addToCartBtn.addEventListener('click', () => {
         })
     }
 })
-//add and delete cart items//
 
-//increment qty//
 let qtyCount = 1;
 btnMinus.addEventListener('click', () => {
     decrementQty();
@@ -127,13 +109,11 @@ lightboxImgBtns.forEach(btn => {
     btn.addEventListener('click', changeImg)
 })
 
-
-
 function changeImg(e) {
     const targetImgBtn = e.target;
     const targetImg = targetImgBtn.getAttribute('data-img');
 
-    if (isPreviewImgs(targetImg)) {
+    if (document.getElementById(targetImg).dataset.img === 'preview') {
         previewImgBtnsList.querySelector('[aria-selected="true"]').setAttribute('aria-selected', false);
         hideContent('.preview-imgs__img');
     } else {
@@ -144,7 +124,7 @@ function changeImg(e) {
     targetImgBtn.setAttribute('aria-selected', true);
     showContent(targetImg);
 }
-//img buttons//
+
 function hideContent(content) {
     document.querySelectorAll(content).forEach(item => {
         item.setAttribute('data-visible', false);
@@ -153,9 +133,7 @@ function hideContent(content) {
 function showContent(target) {
     document.getElementById(target).setAttribute('data-visible', true);
 }
-function isPreviewImgs(targetImg) {
-    return targetImg === 'img1' || targetImg === 'img2' || targetImg === 'img3' || targetImg === 'img4';
-}
+
 imgs.forEach(img => {
     img.addEventListener('click', () => {
         lightbox.showModal()
